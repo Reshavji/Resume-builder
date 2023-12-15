@@ -1,38 +1,87 @@
-.App {
-  text-align: center;
+.app {
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.root {
+  height: 100vh;
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.paper {
+  color: #000;
+  height: 100%;
+  padding: 16px; /* Add padding as needed */
+  flex-direction: column;
+  box-shadow: none;
+  display: flex;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.content1 {
+  background-color: #f0f0f0; /* Background color for Content 1 */
+}
+.upload-btn {
+  background-color: #6e91b6;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+}
+.content2 {
+  background-color: #6e91b6 !important; /* Background color for Content 2 */
+}
+/* App.css */
+/* Add these styles for the image and the upload button */
+.app .root .paper.content1 button {
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.app .root .paper.content1 button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app .root .paper.content1 button input[type="file"] {
+  display: none;
+}
+
+.app .root .paper.content1 button + button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#profile-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.contain {
+  padding: 20px;
+  height: auto;
+  display: flex;
+  width: 100%;
+  border: 2px solid white;
+  background-color:#ffffff;
+}
+.part{
+  flex: 1; /* 20% width for the first part */
+  border: 1px soild red;
+ 
+}
+.part1{
+  height: 100%;
+  width: 20%;
+  flex: 0 0 20%; /* 20% width for the first part */
+  background-color:#537598;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  padding: 10px;
+  border-radius: 10px 0px 0px 10px;
 }
