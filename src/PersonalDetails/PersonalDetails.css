@@ -15,7 +15,9 @@
     font-size: 14px;
     margin-right: 8px;
   }
-  
+  .links{
+    padding: 10px 0px;
+  }
   /* CSS for the Next button */
   .next-button {
     background-color: #f50057;

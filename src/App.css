@@ -1,34 +1,32 @@
-.app {
+.paper.content1 {
+  background-color: #f0f0f0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - 80px); /* Adjusted height */
+  padding: 20px; /* Adding padding to create space at the bottom */
 }
-
+.paper.content2 {
+  overflow: hidden; /* Hide overflow for content2 */
+}
+/* Hiding overflow for other elements */
+.app,
 .root {
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .paper {
   color: #000;
   height: 100%;
-  padding: 16px; /* Add padding as needed */
+ 
   flex-direction: column;
   box-shadow: none;
   display: flex;
 }
 
-.content1 {
-  background-color: #f0f0f0; /* Background color for Content 1 */
-}
-.upload-btn {
-  background-color: #6e91b6;
-  width: 80px;
-  height: 80px;
-  padding: 0;
-  border-radius: 0;
-  overflow: hidden;
-  position: relative;
-}
 .content2 {
-  background-color: #6e91b6 !important; /* Background color for Content 2 */
+  background-color: #6e91b6 !important;
+  overflow: hidden; /* Hide overflow */
 }
 /* App.css */
 /* Add these styles for the image and the upload button */
