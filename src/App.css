@@ -32,7 +32,7 @@
 }
 /* App.css */
 /* Add these styles for the image and the upload button */
-.app .root .paper.content1 button {
+.upload-btn {
   width: 80px;
   height: 80px;
   padding: 0;
