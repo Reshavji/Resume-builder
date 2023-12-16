@@ -7,53 +7,62 @@ import {
   StyleSheet,
   Image,
   PDFViewer,
-  PDFDownloadLink,
 } from "@react-pdf/renderer";
 import { DetailsContext } from "../Context/DetailsContext";
 const styles = StyleSheet.create({
   page: {
     flexDirection: "row",
     width: "100%",
-    borderRadius:10,
+    borderRadius: 10,
   },
   sectionLeft: {
     width: "30%",
-    marginRight: 30,
+    marginRight: 10,
     display: "flex",
     alignItems: "center",
     color: "#fff",
-    padding: 10,
-    backgroundColor: "#596977",
+    padding: 20,
+    backgroundColor: "#131d36c9",
   },
   sectionRight: {
     width: "70%",
+    padding:15,
   },
   heading: {
-    fontSize: 15,
-    fontWeight: "bold",
-    marginBottom: 5, // Added margin bottom for consistent spacing
+    fontSize: 20,
+    fontWeight: 'bolder',
+    marginBottom: 5, 
+  },
+  jobtitle:{
+    fontSize: 12,
+    fontWeight: "bolder",
+    color:"#fff",
+    marginRight:5,
+    marginBottom:5,
   },
   text: {
-    fontSize: 12,
+    fontSize: 11,
     display: "flex",
     flexDirection: "column",
     gap: 20,
-    padding: "5px 0", // Use a string value for padding with object notation
-    alignItems: "flex-start", // Align text content to the start
+    padding: "5px 0", 
+    alignItems: "flex-start", 
   },
   subHeading: {
     fontSize: 15,
     fontWeight: "bold",
     color:"#000",
-    marginBottom: 3, // Added margin bottom for consistent spacing
+    marginRight:5,
+    marginTop:10,
+    marginBottom:5,
   },
   subText: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "bold",
-    color:"#000",
-    marginBottom: 3, // Added margin bottom for consistent spacing
+    color:'#babdc8',
   },
   profileImage: {
+    marginBottom:10,
     height: 80,
     width: 80,
     borderRadius: "50%",
@@ -63,21 +72,36 @@ const styles = StyleSheet.create({
     color: 'blue',
     cursor: 'pointer',
   },
+  progressBarContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  progressBar: {
+    width: '100px',
+    height: 5,
+    backgroundColor: '#fff2',
+    marginBottom: 5,
+  },
+  progress: {
+    height: '5px',
+    backgroundColor: '#191970',
+  },
   '@media max-width: 768px': {
     sectionLeft: {
-      width: '100%', // Occupy full width on smaller screens
-      marginRight: 0, // Remove right margin on smaller screens
+      width: '100%',
+      marginRight: 0, 
     },
     sectionRight: {
-      width: '100%', // Occupy full width on smaller screens
+      width: '100%', 
     },
     page: {
-      flexDirection: 'column', // Stack content in a column on smaller screens
+      flexDirection: 'column', 
     },
     profileImage: {
       height: 60,
       width: 60,
-      borderRadius: '50%', // Adjust profile image size for smaller screens
+      borderRadius: '50%', 
     },}
   
 
@@ -96,6 +120,8 @@ const MyDocument = ({
         linkedinLink,
         githubLink,
         websiteLink,
+        skills,
+        profile,
 }) => (
   <Document>
     <Page size="A4" style={styles.page}>
@@ -112,7 +138,7 @@ const MyDocument = ({
           <Text style={styles.Heading}>
             {firstName || "Name"} {lastName}
           </Text>
-          <Text style={styles.text}>{jobTitle || "JobTitle"}</Text>
+          <Text style={styles.jobtitle}>{jobTitle || "JobTitle"}</Text>
           <Text style={styles.subHeading}>Details</Text>
           <Text style={styles.subText}>Address</Text>
           <Text style={styles.text}>
@@ -120,9 +146,9 @@ const MyDocument = ({
           </Text>
 
           <Text style={styles.subText}>Phone</Text>
-          <Text style={styles.text}>{phone || "Phone"}</Text>
+          <Text style={styles.text}>{phone}</Text>
           <Text style={styles.subText}>Email</Text>
-          <Text style={styles.text}>{email || "Email"}</Text>
+          <Text style={styles.text}>{email}</Text>
           <Text style={styles.subHeading}>Links</Text>
          
           <Text style={styles.text}> <Image
@@ -146,6 +172,23 @@ const MyDocument = ({
     alt="Facebook Logo"
     style={{ width: 20}} // Adjust the width or styles as needed
   />{websiteLink || "Website"}</Text>
+<Text style={styles.subHeading}>Skills</Text>
+  <View style={styles.progressBarContainer}>
+  {skills.map((skill, index) => (
+    <View key={index}>
+      <Text style={styles.text}>{skill.skill}</Text>
+      <View style={styles.progressBar}>
+        <View
+          style={{
+            ...styles.progress,
+            width: `${skill.level}px`,
+          }}
+        />
+      </View>
+    </View>
+  ))}
+</View>
+
         </View>
         {/* Additional personal details can be added here */}
         
@@ -155,8 +198,7 @@ const MyDocument = ({
         <View style={styles.section}>
           <Text style={styles.heading}>Profile</Text>
           <Text style={styles.text}>
-            A highly motivated individual with a passion for technology and a
-            proven track record in web development.
+            {profile}
           </Text>
         </View>
         <View style={styles.section}>
@@ -203,35 +245,12 @@ const Resume = () => {
         linkedinLink,
         githubLink,
         websiteLink,
+       skills,
+       profile,
     // Add other state values if needed
   } = useContext(DetailsContext);
   return (
-    <div>
-      <PDFDownloadLink
-        document={
-          <MyDocument
-            uploadedImage={uploadedImage}
-            firstName={firstName}
-            lastName={lastName}
-            jobTitle={jobTitle}
-            phone={phone}
-            email={email}
-            address={address}
-            country={country}
-            city={city}
-            facebookLink={facebookLink}
-        linkedinLink ={linkedinLink}
-        githubLink ={githubLink}
-        websiteLink ={websiteLink}
-          />
-        }
-        fileName="resume.pdf"
-      >
-        {({ blob, url, loading, error }) =>
-          loading ? "Loading document..." : "Download PDF"
-        }
-      </PDFDownloadLink>
-      <PDFViewer width="100%" height="600">
+      <PDFViewer width="100%" height="100%">
         <MyDocument
           uploadedImage={uploadedImage}
           firstName={firstName}
@@ -246,9 +265,10 @@ const Resume = () => {
         linkedinLink ={linkedinLink}
         githubLink ={githubLink}
         websiteLink ={websiteLink}
+        skills={skills}
+        profile={profile}
         />
       </PDFViewer>
-    </div>
   );
 };
 

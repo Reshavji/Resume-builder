@@ -21,7 +21,7 @@ const Links = () => {
         setWebsiteLink,
       } = useContext(DetailsContext);
   return (
-    <div className="links">
+    <div className="links" style={{marginTop: '20px' }}>
       <Typography variant="h6" gutterBottom>
           Links
         </Typography>
