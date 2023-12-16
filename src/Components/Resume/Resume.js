@@ -43,11 +43,13 @@ const styles = StyleSheet.create({
   subHeading: {
     fontSize: 15,
     fontWeight: "bold",
+    color:"#000",
     marginBottom: 3, // Added margin bottom for consistent spacing
   },
   subText: {
     fontSize: 13,
     fontWeight: "bold",
+    color:"#000",
     marginBottom: 3, // Added margin bottom for consistent spacing
   },
   profileImage: {
@@ -60,6 +62,24 @@ const styles = StyleSheet.create({
     color: 'blue',
     cursor: 'pointer',
   },
+  '@media max-width: 768px': {
+    sectionLeft: {
+      width: '100%', // Occupy full width on smaller screens
+      marginRight: 0, // Remove right margin on smaller screens
+    },
+    sectionRight: {
+      width: '100%', // Occupy full width on smaller screens
+    },
+    page: {
+      flexDirection: 'column', // Stack content in a column on smaller screens
+    },
+    profileImage: {
+      height: 60,
+      width: 60,
+      borderRadius: '50%', // Adjust profile image size for smaller screens
+    },}
+  
+
 });
 const MyDocument = ({
   uploadedImage,

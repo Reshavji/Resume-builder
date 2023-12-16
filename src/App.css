@@ -5,9 +5,7 @@
   max-height: calc(100vh - 80px); /* Adjusted height */
   padding: 20px; /* Adding padding to create space at the bottom */
 }
-.paper.content2 {
-  overflow: hidden; /* Hide overflow for content2 */
-}
+
 /* Hiding overflow for other elements */
 .app,
 .root {
@@ -81,4 +79,49 @@
   flex-direction: column;
   padding: 10px;
   border-radius: 10px 0px 0px 10px;
+}
+@media (max-width: 600px) {
+  .paper.content1 {
+    max-height: calc(100vh - 160px); /* Adjusted height for smaller screens */
+    overflow-y: scroll; /* Enable vertical scrolling */
+  }
+  .paper.content2 {
+    overflow: visible; /* Show overflow for content2 */
+  }
+  .app,
+  .root {
+    height: auto; /* Allow content to expand */
+    overflow: visible; /* Show overflow */
+  }
+  .upload-btn {
+    width: 60px;
+    height: 60px;
+  }
+  #profile-img {
+    height: 80px;
+    width: 80px;
+  }
+  .part1 {
+    width: 100%; /* Occupy full width for the first part */
+    border-radius: 0; /* Adjust border-radius */
+  }
+}
+
+/* Tablets and larger screens */
+@media (min-width: 601px) {
+  .paper.content1 {
+    max-height: calc(100vh - 80px); /* Adjusted height for tablets */
+  }
+  .upload-btn {
+    width: 80px;
+    height: 80px;
+  }
+  #profile-img {
+    height: 100px;
+    width: 100px;
+  }
+  .part1 {
+    width: 20%; /* Restore width for tablets */
+    border-radius: 10px 0px 0px 10px;
+  }
 }

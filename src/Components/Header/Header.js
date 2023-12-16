@@ -12,9 +12,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   appBar: {
-    width: 'auto', // Set the width to take full viewport width
-    maxWidth: '100%', // Ensure it doesn't exceed the viewport width
-    margin: 'auto', // Center the AppBar
+    width: '100%',
+    position: 'sticky', // Set position to sticky
+    top: 0, // Stick it to the top of the viewport
+    zIndex: 1000,
+    boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.1)', // Add a subtle shadow for depth
   },
   menuButton: {
     marginRight: theme.spacing(2),
