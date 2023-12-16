@@ -10,6 +10,7 @@ import Links from "./Components/Links/Links";
 import { DetailsContext } from "./Components/Context/DetailsContext";
 import Skills from "./Components/Skills/Skills";
 import Profile from "./Components/Profile/Profile";
+import Experience from "./Components/Experience/Experience";
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -28,6 +29,9 @@ function App() {
   const [websiteLink, setWebsiteLink] = useState('');
   const [skills, setSkills] = useState([]);
   const [profile, setProfile] = useState('');
+  const [experiences, setExperiences] = useState([]);
+
+  
   const handleImageChange = (event) => {
     const image = event.target.files[0];
     if (image) {
@@ -62,6 +66,7 @@ function App() {
         websiteLink,
         skills,
         profile,
+        experiences,
         handleImageChange,
         handleUpload,
         setJobTitle,
@@ -78,6 +83,7 @@ function App() {
         setWebsiteLink,
         setSkills,
         setProfile,
+        setExperiences,
       }}
     >
       <div className="app">
@@ -90,11 +96,13 @@ function App() {
                 <Links />
                 <Skills />
                 <Profile />
+                <Experience />
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Paper className="paper content2">
                 <Resume />
+
               </Paper>
 
             </Grid>

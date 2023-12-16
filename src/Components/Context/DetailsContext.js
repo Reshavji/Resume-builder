@@ -18,6 +18,7 @@ export const DetailsProvider = ({ children }) => {
     websiteLink: '',
     skills: [{ skill: '', level: 0 }],
     profile:'',
+    experiences:'',
   };
 
   const [personalDetails, setPersonalDetails] = useState(initialDetails);

@@ -79,13 +79,46 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     width: '100px',
+    borderRadius:'5px',
+    overflow:'hidden',
     height: 5,
     backgroundColor: '#fff2',
     marginBottom: 5,
   },
   progress: {
+    
     height: '5px',
-    backgroundColor: '#191970',
+    backgroundColor: '#fff',
+  },
+  experiencesContainer: {
+    marginTop: 10,
+  },
+  experience: {
+    marginBottom: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: 'grey',
+  },
+  companyName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  designation: {
+    fontSize: 13,
+    color:'grey',
+    marginBottom: 5,
+  },
+  dateContainer: {
+    flexDirection: 'row',
+    marginBottom: 5,
+  },
+  date: {
+    fontSize: 11,
+  },
+  workDetails: {
+    fontSize: 11,
   },
   '@media max-width: 768px': {
     sectionLeft: {
@@ -122,6 +155,7 @@ const MyDocument = ({
         websiteLink,
         skills,
         profile,
+        experiences,
 }) => (
   <Document>
     <Page size="A4" style={styles.page}>
@@ -203,10 +237,21 @@ const MyDocument = ({
         </View>
         <View style={styles.section}>
           <Text style={styles.heading}>Experience</Text>
-          <Text style={styles.text}>
-            A highly motivated individual with a passion for technology and a
-            proven track record in web development.
-          </Text>
+          <View>
+          <View style={styles.experiencesContainer}>
+        {experiences.map((experience, index) => (
+          <View key={index} style={styles.experience}>
+            <Text style={styles.companyName}>{experience.companyName}</Text>
+            <Text style={styles.designation}>{experience.designation}</Text>
+            <View style={styles.dateContainer}>
+              <Text style={styles.date}>{`${experience.startDate} - `}</Text>
+              <Text style={styles.date}>{`${experience.endDate}`}</Text>
+            </View>
+            <Text style={styles.workDetails}>{`Work Details: ${experience.workDetails}`}</Text>
+          </View>
+        ))}
+      </View>
+    </View>
         </View>
         <View style={styles.section}>
           <Text style={styles.heading}>Skills</Text>
@@ -217,7 +262,7 @@ const MyDocument = ({
           </Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.heading}>Skills</Text>
+          <Text style={styles.subHeading}>Skills</Text>
           <Text style={styles.text}>
             - React.js, JavaScript, HTML, CSS{"\n"}- Node.js, Express.js{"\n"}-
             Database Management (SQL, MongoDB){"\n"}- Responsive Web Design
@@ -247,6 +292,7 @@ const Resume = () => {
         websiteLink,
        skills,
        profile,
+       experiences,
     // Add other state values if needed
   } = useContext(DetailsContext);
   return (
@@ -267,7 +313,9 @@ const Resume = () => {
         websiteLink ={websiteLink}
         skills={skills}
         profile={profile}
+        experiences ={experiences}
         />
+
       </PDFViewer>
   );
 };

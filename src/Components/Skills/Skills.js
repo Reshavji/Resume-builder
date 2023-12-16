@@ -4,10 +4,9 @@ import { Grid, TextField, Typography, Button } from '@material-ui/core';
 
 function Skills() {
   const { skills, setSkills } = useContext(DetailsContext);
-
   useEffect(() => {
     if (skills.length === 0) {
-      setSkills([{ skill: '', level: 0 }, { skill: '', level: 0 }]);
+      setSkills([{ skill: '', level: 0 }]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array ensures this runs only once
