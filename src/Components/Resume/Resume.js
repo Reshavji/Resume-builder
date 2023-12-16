@@ -91,14 +91,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   experiencesContainer: {
-    marginTop: 10,
+    marginTop: 5,
   },
   experience: {
     marginBottom: 10,
     padding: 10,
-    borderWidth: 1,
+    borderWidth: '1',
     borderRadius: 5,
-    borderColor: 'grey',
+    borderColor: 'lightgrey',
   },
   companyName: {
     fontSize: 16,
@@ -119,6 +119,24 @@ const styles = StyleSheet.create({
   },
   workDetails: {
     fontSize: 11,
+  },
+
+  educationsContainer: {
+    marginTop: 5,
+  },
+  education: {
+    marginBottom: 5,
+    padding: 10,
+  },
+  collegeName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  course: {
+    fontSize: 13,
+    color:'grey',
+    marginBottom: 5,
   },
   '@media max-width: 768px': {
     sectionLeft: {
@@ -156,6 +174,8 @@ const MyDocument = ({
         skills,
         profile,
         experiences,
+        education,
+        languages,
 }) => (
   <Document>
     <Page size="A4" style={styles.page}>
@@ -254,22 +274,37 @@ const MyDocument = ({
     </View>
         </View>
         <View style={styles.section}>
-          <Text style={styles.heading}>Skills</Text>
-          <Text style={styles.text}>
-            - React.js, JavaScript, HTML, CSS{"\n"}- Node.js, Express.js{"\n"}-
-            Database Management (SQL, MongoDB){"\n"}- Responsive Web Design
-            {"\n"}- Problem-solving and Analytical Skills
-          </Text>
+          <Text style={styles.heading}>Education</Text>
+          <View>
+          <View style={styles.educationsContainer}>
+        {education.map((education, index) => (
+          <View key={index} style={styles.education}>
+            <Text style={styles.collegeName}>{education.collegeName}</Text>
+            <Text style={styles.course}>{education.course}</Text>
+            <View style={styles.dateContainer}>
+              <Text style={styles.date}>{`${education.startDate} - `}</Text>
+              <Text style={styles.date}>{`${education.endDate}`}</Text>
+            </View>
+          </View>
+        ))}
+      </View>
+    </View>
         </View>
         <View style={styles.section}>
-          <Text style={styles.subHeading}>Skills</Text>
-          <Text style={styles.text}>
-            - React.js, JavaScript, HTML, CSS{"\n"}- Node.js, Express.js{"\n"}-
-            Database Management (SQL, MongoDB){"\n"}- Responsive Web Design
-            {"\n"}- Problem-solving and Analytical Skills
-          </Text>
+          <Text style={styles.heading}>Education</Text>
+          <View>
+          <View style={styles.educationsContainer}>
+        {languages.map((language, index) => (
+          <View key={index} style={styles.education}>
+            <View style={styles.dateContainer}>
+              <Text style={styles.date}>{`${language.name} - `}</Text>
+              <Text style={styles.date}>{`${language.level}`}</Text>
+            </View>
+          </View>
+        ))}
+      </View>
+    </View>
         </View>
-        {/* Add more sections like Experience, Projects, Hobbies, etc. */}
       </View>
     </Page>
   </Document>
@@ -293,6 +328,8 @@ const Resume = () => {
        skills,
        profile,
        experiences,
+       education,
+       languages,
     // Add other state values if needed
   } = useContext(DetailsContext);
   return (
@@ -314,6 +351,8 @@ const Resume = () => {
         skills={skills}
         profile={profile}
         experiences ={experiences}
+        education={education}
+        languages={languages}
         />
 
       </PDFViewer>

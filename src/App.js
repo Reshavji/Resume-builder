@@ -11,6 +11,8 @@ import { DetailsContext } from "./Components/Context/DetailsContext";
 import Skills from "./Components/Skills/Skills";
 import Profile from "./Components/Profile/Profile";
 import Experience from "./Components/Experience/Experience";
+import Education from "./Components/Education/Education";
+import Language from "./Components/Language/Language";
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -30,7 +32,8 @@ function App() {
   const [skills, setSkills] = useState([]);
   const [profile, setProfile] = useState('');
   const [experiences, setExperiences] = useState([]);
-
+  const [education, setEducation] = useState([]);
+  const [languages, setLanguages] = useState([]);
   
   const handleImageChange = (event) => {
     const image = event.target.files[0];
@@ -67,6 +70,8 @@ function App() {
         skills,
         profile,
         experiences,
+        education, 
+        languages, 
         handleImageChange,
         handleUpload,
         setJobTitle,
@@ -84,6 +89,8 @@ function App() {
         setSkills,
         setProfile,
         setExperiences,
+        setEducation,
+        setLanguages,
       }}
     >
       <div className="app">
@@ -97,6 +104,8 @@ function App() {
                 <Skills />
                 <Profile />
                 <Experience />
+                <Education />
+                <Language />
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6}>
