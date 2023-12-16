@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: "row",
     width: "100%",
+    borderRadius:10,
   },
   sectionLeft: {
     width: "30%",
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     color: "#fff",
     padding: 10,
-    backgroundColor: "#6e91b6",
+    backgroundColor: "#596977",
   },
   sectionRight: {
     width: "70%",
