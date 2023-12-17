@@ -5,7 +5,7 @@ import Header from "./Components/Header/Header";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Resume from "./Components/Resume/Resume";
-import PersonalDetails from "./PersonalDetails/PersonalDetails";
+import PersonalDetails from "./Components/PersonalDetails/PersonalDetails";
 import Links from "./Components/Links/Links";
 import { DetailsContext } from "./Components/Context/DetailsContext";
 import Skills from "./Components/Skills/Skills";

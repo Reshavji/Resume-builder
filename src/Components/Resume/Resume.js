@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
   },
   dateContainer: {
     flexDirection: 'row',
-    marginBottom: 5,
   },
   date: {
     fontSize: 11,
@@ -137,6 +136,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color:'grey',
     marginBottom: 5,
+  },
+  language:{
+    padding:3,
   },
   '@media max-width: 768px': {
     sectionLeft: {
@@ -291,18 +293,17 @@ const MyDocument = ({
     </View>
         </View>
         <View style={styles.section}>
-          <Text style={styles.heading}>Education</Text>
+          <Text style={styles.heading}>Languages</Text>
           <View>
-          <View style={styles.educationsContainer}>
         {languages.map((language, index) => (
-          <View key={index} style={styles.education}>
+          <View key={index} style={styles.language}>
             <View style={styles.dateContainer}>
               <Text style={styles.date}>{`${language.name} - `}</Text>
               <Text style={styles.date}>{`${language.level}`}</Text>
             </View>
           </View>
         ))}
-      </View>
+    
     </View>
         </View>
       </View>
