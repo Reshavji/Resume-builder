@@ -6,7 +6,7 @@ function Skills() {
   const { skills, setSkills } = useContext(DetailsContext);
   useEffect(() => {
     if (skills.length === 0) {
-      setSkills([{ skill: '', level: 0 }]);
+      setSkills([]); // Set skills to an empty array initially
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array ensures this runs only once

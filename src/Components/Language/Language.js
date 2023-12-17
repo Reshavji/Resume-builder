@@ -1,17 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { DetailsContext } from '../Context/DetailsContext';
 import { Grid, Typography, Button, Select, MenuItem, FormControl,TextField, InputLabel } from '@material-ui/core';
 
 
 const Language = () => {
   const { languages, setLanguages } = useContext(DetailsContext);
-  if (languages.length === 0) {
-    setLanguages([
-      {
-        name: '', level: '',
-      },
-    ]);
-  }
+  useEffect(() => {
+    if (languages.length === 0) {
+      setLanguages([]); // Set projects to an empty array initially
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleInputChange = (index, field, value) => {
     const updatedLanguages = [...languages];
     updatedLanguages[index][field] = value;

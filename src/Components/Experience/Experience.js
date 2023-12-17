@@ -1,20 +1,15 @@
-import React, { useContext} from 'react';
+import React, { useContext,useEffect} from 'react';
 import { DetailsContext } from '../Context/DetailsContext';
 import { Grid, TextField, Typography, Button } from '@material-ui/core';
 
 const Experience = () => {
   const { experiences, setExperiences } = useContext(DetailsContext);
-  if (experiences.length === 0) {
-    setExperiences([
-      {
-        companyName: '',
-        designation: '',
-        startDate: '',
-        endDate: '',
-        workDetails: '',
-      },
-    ]);
-  }
+  useEffect(() => {
+    if (experiences.length === 0) {
+      setExperiences([]); // Set projects to an empty array initially
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleAddExperience = () => {
     setExperiences([...experiences, {
       companyName: '',

@@ -1,22 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect } from 'react';
 import { DetailsContext } from '../Context/DetailsContext';
 import { Grid, TextField, Typography, Button } from '@material-ui/core';
 
 const ProjectDetails = () => {
   const { projects, setProjects } = useContext(DetailsContext);
-
-  if (projects.length === 0) {
-    setProjects([
-      {
-        projectName: '',
-        githubLink: '',
-        hostedLink: '',
-        startDate: '',
-        endDate: '',
-        projectDetails: '',
-      },
-    ]);
-  }
+  useEffect(() => {
+    if (projects.length === 0) {
+      setProjects([]); // Set projects to an empty array initially
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleAddProject = () => {
     setProjects([

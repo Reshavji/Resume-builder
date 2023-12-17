@@ -1,5 +1,5 @@
 // App.js
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./App.css";
 import Header from "./Components/Header/Header";
 import Paper from "@material-ui/core/Paper";
@@ -14,6 +14,8 @@ import Experience from "./Components/Experience/Experience";
 import Education from "./Components/Education/Education";
 import Language from "./Components/Language/Language";
 import ProjectDetails from "./Components/ProjectDetails/ProjectDetails";
+import ProgressBar from "./Components/ProgressBar/ProgressBar";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -36,6 +38,8 @@ function App() {
   const [education, setEducation] = useState([]);
   const [languages, setLanguages] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [formCompletion, setFormCompletion] = useState(0);
+  const context = useContext(DetailsContext);
   
   const handleImageChange = (event) => {
     const image = event.target.files[0];
@@ -51,7 +55,85 @@ function App() {
   const handleUpload = () => {
     setUploadedImage(selectedImage);
   };
+  const countFilledFields = () => {
+    const fieldsToCheck = [
+      selectedImage,
+      uploadedImage,
+      jobTitle,
+      firstName,
+      lastName,
+      email,
+      phone,
+      address,
+      country,
+      city,
+      facebookLink,
+      linkedinLink,
+      githubLink,
+      websiteLink,
+      profile,
+      profile,
+      ...skills.flat(),
+      ...experiences.flat(),
+      ...education.flat(),
+      ...languages.flat(),
+      ...projects.flat(),
+    ];
+  
+    const filledFields = fieldsToCheck.reduce((count, field) => {
+      if (Array.isArray(field)) {
+        if (field.length > 0 && field.every(obj => typeof obj === 'object')) {
+          return count; // Do not increment if it's an array of objects
+        }
+        return count + (field.length > 0 ? 1 : 0); // Increment if it's a non-empty array of non-objects
+      }
+      if (field !== null && field !== undefined && field.toString().trim() !== '') {
+        return count + 1;
+      }
+      return count;
+    }, 0);
+  
+    return filledFields;
+  };
+  
+  
+  
+ 
+  useEffect(() => {
+    const totalFields = 16 + skills.flat().length + experiences.flat().length + education.flat().length + languages.flat().length + projects.flat().length;
 
+    const filledFields = countFilledFields();
+    console.log(filledFields,totalFields);
+    const completion = (filledFields / totalFields) * 100;
+    setFormCompletion(completion || 0); // Ensure it starts from 0
+  },  [context,
+    countFilledFields,
+    selectedImage,
+    uploadedImage,
+    jobTitle,
+    firstName,
+    lastName,
+    email,
+    phone,
+    address,
+    country,
+    city,
+    facebookLink,
+    linkedinLink,
+    githubLink,
+    websiteLink,
+    profile,
+    skills,
+    experiences,
+    education,
+    languages,
+    projects,
+  ]);
+  
+  
+  
+  
+  
   return (
     <DetailsContext.Provider
       value={{
@@ -102,7 +184,9 @@ function App() {
         <div className="root">
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
+            <ProgressBar completion={formCompletion} />
               <Paper className="paper content1">
+              
                 <PersonalDetails />
                 <Links />
                 <Skills />
@@ -111,18 +195,23 @@ function App() {
                 <ProjectDetails />
                 <Education />
                 <Language />
+                <Footer />
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Paper className="paper content2">
                 <Resume />
-
+                
               </Paper>
-
+              
             </Grid>
+           
           </Grid>
+          
         </div>
+        
       </div>
+      
     </DetailsContext.Provider>
   );
 }

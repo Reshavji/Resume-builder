@@ -1,16 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { DetailsContext } from '../Context/DetailsContext';
 import { Grid, TextField, Typography, Button } from '@material-ui/core';
 
 const Education = () => {
   const { education, setEducation } = useContext(DetailsContext);
-  if (education.length === 0) {
-    setEducation([
-      {
-        collegeName: '', course: '', startDate: '', endDate: '',
-      },
-    ]);
-  }
+  useEffect(() => {
+    if (education.length === 0) {
+      setEducation([]); // Set projects to an empty array initially
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleInputChange = (index, field, value) => {
     const updatedEducation = [...education];
     updatedEducation[index][field] = value;
