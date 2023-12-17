@@ -178,7 +178,7 @@ const MyDocument = ({
         languages,
 }) => (
   <Document>
-    <Page size="A4" style={styles.page}>
+    <Page style={styles.page}>
       <View style={styles.sectionLeft}>
         {uploadedImage ? (
           <Image src={uploadedImage} style={styles.profileImage} />
