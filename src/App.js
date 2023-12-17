@@ -106,7 +106,8 @@ function App() {
     const filledFields = countFilledFields();
     console.log(filledFields,totalFields);
     const completion = (filledFields / totalFields) * 100;
-    setFormCompletion(completion || 0); // Ensure it starts from 0
+    const completionValue = isNaN(completion) ? 0 : Math.floor(completion); // Use Math.floor() to round down
+setFormCompletion(completionValue);  // Ensure it starts from 0
      // eslint-disable-next-line react-hooks/exhaustive-deps
   },  [context,
     selectedImage,
