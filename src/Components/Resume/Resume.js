@@ -402,7 +402,7 @@ const Resume = () => {
     // Add other state values if needed
   } = useContext(DetailsContext);
   return (
-    <Grid item xs={12} style={{ marginTop: '20px' }}>
+    <Grid item xs={12} style={{ marginTop: '10px', display:'flex', flexDirection:'column' ,alignItems:'center' }}>
        <PDFDownloadLink
           document={<MyDocument
             uploadedImage={uploadedImage}
