@@ -55,59 +55,60 @@ function App() {
   const handleUpload = () => {
     setUploadedImage(selectedImage);
   };
-  const countFilledFields = () => {
-    const fieldsToCheck = [
-      selectedImage,
-      uploadedImage,
-      jobTitle,
-      firstName,
-      lastName,
-      email,
-      phone,
-      address,
-      country,
-      city,
-      facebookLink,
-      linkedinLink,
-      githubLink,
-      websiteLink,
-      profile,
-      profile,
-      ...skills.flat(),
-      ...experiences.flat(),
-      ...education.flat(),
-      ...languages.flat(),
-      ...projects.flat(),
-    ];
   
-    const filledFields = fieldsToCheck.reduce((count, field) => {
-      if (Array.isArray(field)) {
-        if (field.length > 0 && field.every(obj => typeof obj === 'object')) {
-          return count; // Do not increment if it's an array of objects
-        }
-        return count + (field.length > 0 ? 1 : 0); // Increment if it's a non-empty array of non-objects
-      }
-      if (field !== null && field !== undefined && field.toString().trim() !== '') {
-        return count + 1;
-      }
-      return count;
-    }, 0);
-  
-    return filledFields;
-  };
   
   
   
  
   useEffect(() => {
+    const countFilledFields = () => {
+      const fieldsToCheck = [
+        selectedImage,
+        uploadedImage,
+        jobTitle,
+        firstName,
+        lastName,
+        email,
+        phone,
+        address,
+        country,
+        city,
+        facebookLink,
+        linkedinLink,
+        githubLink,
+        websiteLink,
+        profile,
+        profile,
+        ...skills.flat(),
+        ...experiences.flat(),
+        ...education.flat(),
+        ...languages.flat(),
+        ...projects.flat(),
+      ];
+    
+      const filledFields = fieldsToCheck.reduce((count, field) => {
+        if (Array.isArray(field)) {
+          if (field.length > 0 && field.every(obj => typeof obj === 'object')) {
+            return count; // Do not increment if it's an array of objects
+          }
+          return count + (field.length > 0 ? 1 : 0); // Increment if it's a non-empty array of non-objects
+        }
+        if (field !== null && field !== undefined && field.toString().trim() !== '') {
+          return count + 1;
+        }
+        return count;
+      }, 0);
+    
+      return filledFields;
+    };
     const totalFields = 16 + skills.flat().length + experiences.flat().length + education.flat().length + languages.flat().length + projects.flat().length;
 
     const filledFields = countFilledFields();
     console.log(filledFields,totalFields);
     const completion = (filledFields / totalFields) * 100;
     setFormCompletion(completion || 0); // Ensure it starts from 0
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   },  [context,
-    countFilledFields,
     selectedImage,
     uploadedImage,
     jobTitle,
