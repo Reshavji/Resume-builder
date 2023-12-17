@@ -1,3 +1,4 @@
+/* General Styles */
 .paper.content1 {
   background-color: #f0f0f0;
   overflow-x: hidden;
@@ -9,14 +10,13 @@
 /* Hiding overflow for other elements */
 .app,
 .root {
-height: 100vh;
-overflow: hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .paper {
   color: #000;
   height: 100%;
- 
   flex-direction: column;
   box-shadow: none;
   display: flex;
@@ -26,8 +26,8 @@ overflow: hidden;
   background-color: #6e91b6 !important;
   overflow: hidden; /* Hide overflow */
 }
-/* App.css */
-/* Add these styles for the image and the upload button */
+
+/* Image and Upload Button */
 .upload-btn {
   width: 80px;
   height: 80px;
@@ -43,48 +43,69 @@ overflow: hidden;
   object-fit: cover;
 }
 
-.app .root .paper.content1 button input[type="file"] {
-  display: none;
-}
-
-.app .root .paper.content1 button + button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
+/* Profile Image */
 #profile-img {
   height: 100px;
   width: 100px;
   border-radius: 50%;
 }
+
+/* Container Styles */
 .contain {
   padding: 20px;
   height: auto;
   display: flex;
   width: 100%;
   border: 2px solid white;
-  background-color:#ffffff;
+  background-color: #ffffff;
 }
-.part{
+
+/* Part Styles */
+.part {
   flex: 1; /* 20% width for the first part */
-  border: 1px soild red;
- 
+  border: 1px solid red;
 }
-.part1{
+
+.part1 {
   height: 100%;
   width: 20%;
   flex: 0 0 20%; /* 20% width for the first part */
-  background-color:#537598;
+  background-color: #537598;
   display: flex;
   flex-direction: column;
   padding: 10px;
   border-radius: 10px 0px 0px 10px;
 }
-Button{
+
+/* Button Styles */
+Button {
   margin-top: 10px;
   align-self: center;
 }
+/* CSS for PDFDownloadLink */
+.downloadButton {
+  padding: 10px 20px;
+  background-color: rgb(7, 31, 102);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.downloadButton:hover {
+  background-color: rgb(17, 58, 181);
+}
+
+.loadingText {
+  color: #555;
+  font-style: italic;
+}
+
+/* Media Queries */
 @media (max-width: 600px) {
   .paper.content1 {
     max-height: calc(100vh - 160px); /* Adjusted height for smaller screens */
@@ -111,66 +132,6 @@ Button{
     border-radius: 0; /* Adjust border-radius */
   }
 }
-.pdf-viewer {
-  width: 100%;
-  height: 100vh;
-  align-self: center;
-  display: flex;
-}
-/* Example CSS for Progress Bar */
-.progress-data{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  padding: 5px;
-  gap: 5px;
-}
-.progress-bar {
-  width:100%;
-  background-color: #ddd;
-  height: 8px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  border-radius: 5px;
-}
-
-.progress {
-  height: 100%;
-  background-color: #ec165d;
-  border-radius: 5px;
-  transition: width 0.3s ease-in-out;
-}
-.progress-head{
-  display: flex;
-  gap: 5px;
-  
-}
-.progress-count{
-  position: relative;
-  text-align: center;
-  overflow: hidden;
-
-  border-radius: 5px;
-  padding: 5px 8px;
-  background-color: tomato;
-}
-/* CSS */
-@media (max-width: 768px) {
-  .pdf-viewer {
-    width: 100%;
-    height: 100vh;
-  }
-}
-
-@media (max-width: 480px) {
-  .pdf-viewer {
-    height: 100vh;
-  }
-}
-
 
 /* Tablets and larger screens */
 @media (min-width: 601px) {

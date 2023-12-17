@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Grid } from '@material-ui/core';
 import {
   Document,
   Page,
@@ -7,6 +8,7 @@ import {
   StyleSheet,
   Image,
   PDFViewer,
+  PDFDownloadLink,
 } from "@react-pdf/renderer";
 import { DetailsContext } from "../Context/DetailsContext";
 const styles = StyleSheet.create({
@@ -244,27 +246,37 @@ const MyDocument = ({
           <Text style={styles.text}>{email}</Text>
           <Text style={styles.subHeading}>Links</Text>
          
-          <Text style={styles.text}> <Image
-    src="https://cdn3.iconfinder.com/data/icons/picons-social/57/06-facebook-512.png"
+          <Text style={styles.text}>
+      {facebookLink && (
+        <Image
+          src="https://cdn3.iconfinder.com/data/icons/picons-social/57/06-facebook-512.png"
+          alt="Facebook Logo"
+          style={{ width: 20 }} // Adjust the width or styles as needed
+        />
+      )}
+      {facebookLink }
+    </Text>
+    
+          <Text style={styles.text}>
+          {linkedinLink &&( 
+          <Image src="https://cdn3.iconfinder.com/data/icons/picons-social/57/11-linkedin-512.png"
     alt="Facebook Logo"
-    style={{ width: 20}} // Adjust the width or styles as needed
-  />{facebookLink || "Facebook"}</Text>
-          <Text style={styles.text}> <Image
-    src="https://cdn3.iconfinder.com/data/icons/picons-social/57/11-linkedin-512.png"
-    alt="Facebook Logo"
-    style={{ width: 20}} // Adjust the width or styles as needed
-  />{linkedinLink || "Linkedin"}</Text>
-  <Text style={styles.text}> <Image
+    style={{ width: 20}}
+  />)}
+    {linkedinLink}</Text>
+  <Text style={styles.text}>
+    {githubLink &&(<Image
     src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png"
     alt="Facebook Logo"
-    style={{ width: 20}} // Adjust the width or styles as needed
-  />{githubLink || "Github"}</Text>
-  <Text style={styles.text}> <Image
+    style={{ width: 20}}
+  />)} {githubLink}</Text>
+  <Text style={styles.text}>
+    {websiteLink && (<Image
     
     src="https://cdn4.iconfinder.com/data/icons/software-line/32/software-line-02-512.png"
     alt="Facebook Logo"
     style={{ width: 20}} // Adjust the width or styles as needed
-  />{websiteLink || "Website"}</Text>
+  />)} {websiteLink}</Text>
 <Text style={styles.subHeading}>Skills</Text>
   <View style={styles.progressBarContainer}>
   {skills.map((skill, index) => (
@@ -390,7 +402,38 @@ const Resume = () => {
     // Add other state values if needed
   } = useContext(DetailsContext);
   return (
+    <Grid item xs={12} style={{ marginTop: '20px' }}>
+       <PDFDownloadLink
+          document={<MyDocument
+            uploadedImage={uploadedImage}
+            firstName={firstName}
+            lastName={lastName}
+            jobTitle={jobTitle}
+            phone={phone}
+            email={email}
+            address={address}
+            country={country}
+            city={city}
+            facebookLink={facebookLink}
+          linkedinLink ={linkedinLink}
+          githubLink ={githubLink}
+          websiteLink ={websiteLink}
+          skills={skills}
+          profile={profile}
+          experiences ={experiences}
+          education={education}
+          languages={languages}
+          projects={projects}
+                    />}
+          fileName="resume.pdf"
+          className="downloadButton"
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? 'Loading document...' : 'Download PDF'
+          }
+        </PDFDownloadLink>
       <PDFViewer width="100%" height="100%">
+        
         <MyDocument
           uploadedImage={uploadedImage}
           firstName={firstName}
@@ -414,6 +457,8 @@ const Resume = () => {
         />
 
       </PDFViewer>
+      
+      </Grid>
   );
 };
 
