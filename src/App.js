@@ -13,6 +13,7 @@ import Profile from "./Components/Profile/Profile";
 import Experience from "./Components/Experience/Experience";
 import Education from "./Components/Education/Education";
 import Language from "./Components/Language/Language";
+import ProjectDetails from "./Components/ProjectDetails/ProjectDetails";
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -34,6 +35,7 @@ function App() {
   const [experiences, setExperiences] = useState([]);
   const [education, setEducation] = useState([]);
   const [languages, setLanguages] = useState([]);
+  const [projects, setProjects] = useState([]);
   
   const handleImageChange = (event) => {
     const image = event.target.files[0];
@@ -72,6 +74,7 @@ function App() {
         experiences,
         education, 
         languages, 
+        projects, 
         handleImageChange,
         handleUpload,
         setJobTitle,
@@ -91,6 +94,7 @@ function App() {
         setExperiences,
         setEducation,
         setLanguages,
+        setProjects,
       }}
     >
       <div className="app">
@@ -104,6 +108,7 @@ function App() {
                 <Skills />
                 <Profile />
                 <Experience />
+                <ProjectDetails />
                 <Education />
                 <Language />
               </Paper>

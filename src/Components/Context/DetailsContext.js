@@ -21,6 +21,7 @@ export const DetailsProvider = ({ children }) => {
     experiences:'',
     education:'',
     languages:'',
+    projects:'',
   };
 
   const [personalDetails, setPersonalDetails] = useState(initialDetails);

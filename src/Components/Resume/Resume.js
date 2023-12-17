@@ -114,10 +114,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   date: {
-    fontSize: 11,
+    fontSize: 10,
+    color:'#2F4F4F',
   },
   workDetails: {
     fontSize: 11,
+    color:'#282A35',
+    
   },
 
   educationsContainer: {
@@ -139,6 +142,39 @@ const styles = StyleSheet.create({
   },
   language:{
     padding:3,
+  },
+  projectsContainer: {
+    padding: 10,
+  },
+  project: {
+    marginBottom: 15,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  projectName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  githubLink: {
+    color: 'blue',
+    fontSize:7,
+
+  },
+  hostedLink: {
+    color: 'green',
+    fontSize:8,
+    marginBottom: 5,
+  },
+  label:{
+    display:"flex",
+    fontSize:8,
+    fontWeight:'bold',
+    alignItems:"center",
+  },
+  projectDetails: {
+    fontStyle: 'italic',
   },
   '@media max-width: 768px': {
     sectionLeft: {
@@ -178,6 +214,7 @@ const MyDocument = ({
         experiences,
         education,
         languages,
+        projects,
 }) => (
   <Document>
     <Page style={styles.page}>
@@ -245,10 +282,7 @@ const MyDocument = ({
   ))}
 </View>
 
-        </View>
-        {/* Additional personal details can be added here */}
-        
-        
+        </View> 
       </View>
       <View style={styles.sectionRight}>
         <View style={styles.section}>
@@ -275,6 +309,27 @@ const MyDocument = ({
       </View>
     </View>
         </View>
+        <View style={styles.section}>
+      <Text style={styles.heading}>Projects</Text>
+      <View>
+        <View style={styles.projectsContainer}>
+          {projects.map((project, index) => (
+            <View key={index} style={styles.project}>
+              <Text style={styles.projectName}>{project.projectName}</Text>
+              <Text style={styles.label}>Github Link:
+          <Text style={styles.githubLink}>{project.githubLink}</Text></Text>
+          <Text style={styles.label}>Hosted Link:
+          <Text style={styles.hostedLink}>{project.hostedLink}</Text></Text>
+              <View style={styles.dateContainer}>
+                <Text style={styles.date}>{`${project.startDate} - `}</Text>
+                <Text style={styles.date}>{`${project.endDate}`}</Text>
+              </View>
+              <Text style={styles.workDetails}>{`Project Details: ${project.projectDetails}`}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+    </View>
         <View style={styles.section}>
           <Text style={styles.heading}>Education</Text>
           <View>
@@ -331,6 +386,7 @@ const Resume = () => {
        experiences,
        education,
        languages,
+       projects,
     // Add other state values if needed
   } = useContext(DetailsContext);
   return (
@@ -354,6 +410,7 @@ const Resume = () => {
         experiences ={experiences}
         education={education}
         languages={languages}
+        projects={projects}
         />
 
       </PDFViewer>
