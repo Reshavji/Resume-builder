@@ -432,7 +432,7 @@ const Resume = () => {
             loading ? 'Loading document...' : 'Download PDF'
           }
         </PDFDownloadLink>
-      <PDFViewer width="100%" height="100%">
+      <PDFViewer style={{ width: '100%', maxWidth: '800px', height: '700px', marginTop: '10px' }}>
         
         <MyDocument
           uploadedImage={uploadedImage}

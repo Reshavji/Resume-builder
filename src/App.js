@@ -55,11 +55,7 @@ function App() {
   const handleUpload = () => {
     setUploadedImage(selectedImage);
   };
-  
-  
-  
-  
- 
+   
   useEffect(() => {
     const countFilledFields = () => {
       const fieldsToCheck = [
@@ -184,7 +180,7 @@ setFormCompletion(completionValue);  // Ensure it starts from 0
       <div className="app">
         <Header />
         <div className="root">
-          <Grid container spacing={3}>
+          <Grid container  spacing={3}  direction="row" md-direction="row-reverse">
             <Grid item xs={12} sm={6}>
             <ProgressBar completion={formCompletion} />
               <Paper className="paper content1">
