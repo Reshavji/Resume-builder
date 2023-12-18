@@ -1,12 +1,13 @@
-import React, { useContext,useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { DetailsContext } from '../Context/DetailsContext';
 import { Grid, TextField, Typography, Button } from '@material-ui/core';
 
 const ProjectDetails = () => {
   const { projects, setProjects } = useContext(DetailsContext);
+
   useEffect(() => {
     if (projects.length === 0) {
-      setProjects([]); // Set projects to an empty array initially
+      setProjects([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -28,6 +29,12 @@ const ProjectDetails = () => {
   const handleInputChange = (index, field, value) => {
     const updatedProjects = [...projects];
     updatedProjects[index][field] = value;
+    setProjects(updatedProjects);
+  };
+
+  const handleDeleteProject = (index) => {
+    const updatedProjects = [...projects];
+    updatedProjects.splice(index, 1);
     setProjects(updatedProjects);
   };
 
@@ -96,6 +103,16 @@ const ProjectDetails = () => {
               onChange={(e) => handleInputChange(index, 'projectDetails', e.target.value)}
               inputProps={{ maxLength: 1500 }}
             />
+          </Grid>
+          {/* Delete button */}
+          <Grid item xs={12} style={{ textAlign: 'right' }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => handleDeleteProject(index)}
+            >
+              Delete
+            </Button>
           </Grid>
         </Grid>
       ))}

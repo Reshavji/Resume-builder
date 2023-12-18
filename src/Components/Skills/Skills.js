@@ -4,12 +4,13 @@ import { Grid, TextField, Typography, Button } from '@material-ui/core';
 
 function Skills() {
   const { skills, setSkills } = useContext(DetailsContext);
+
   useEffect(() => {
     if (skills.length === 0) {
-      setSkills([]); // Set skills to an empty array initially
+      setSkills([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array ensures this runs only once
+  }, []);
 
   const addSkill = () => {
     if (skills.length < 5) {
@@ -20,6 +21,12 @@ function Skills() {
   const handleSkillChange = (index, field, value) => {
     const updatedSkills = [...skills];
     updatedSkills[index][field] = value;
+    setSkills(updatedSkills);
+  };
+
+  const deleteSkill = (index) => {
+    const updatedSkills = [...skills];
+    updatedSkills.splice(index, 1);
     setSkills(updatedSkills);
   };
 
@@ -39,7 +46,7 @@ function Skills() {
               onChange={(e) => handleSkillChange(index, 'skill', e.target.value)}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               label={`Skill ${index + 1} Level`}
               variant="outlined"
@@ -50,6 +57,15 @@ function Skills() {
                 handleSkillChange(index, 'level', parseInt(e.target.value, 10) || 0)
               }
             />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => deleteSkill(index)}
+            >
+              Delete
+            </Button>
           </Grid>
         </Grid>
       ))}

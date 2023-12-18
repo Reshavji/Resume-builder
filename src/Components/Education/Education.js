@@ -4,12 +4,14 @@ import { Grid, TextField, Typography, Button } from '@material-ui/core';
 
 const Education = () => {
   const { education, setEducation } = useContext(DetailsContext);
+
   useEffect(() => {
     if (education.length === 0) {
-      setEducation([]); // Set projects to an empty array initially
+      setEducation([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const handleInputChange = (index, field, value) => {
     const updatedEducation = [...education];
     updatedEducation[index][field] = value;
@@ -25,11 +27,17 @@ const Education = () => {
     }
   };
 
+  const handleDeleteEducation = (index) => {
+    const updatedEducation = [...education];
+    updatedEducation.splice(index, 1);
+    setEducation(updatedEducation);
+  };
+
   return (
     <Grid item xs={12} style={{ marginTop: '20px' }}>
-        <Typography variant="h6" gutterBottom>
-          Education
-        </Typography>
+      <Typography variant="h6" gutterBottom>
+        Education
+      </Typography>
       {education.map((edu, index) => (
         <Grid container spacing={2} key={index}>
           <Grid item xs={12} sm={6}>
@@ -69,6 +77,15 @@ const Education = () => {
               value={edu.endDate || ''}
               onChange={(e) => handleInputChange(index, 'endDate', e.target.value)}
             />
+          </Grid>
+          <Grid item xs={12} style={{ textAlign: 'right' }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => handleDeleteEducation(index)}
+            >
+              Delete
+            </Button>
           </Grid>
         </Grid>
       ))}

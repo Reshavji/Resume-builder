@@ -1,28 +1,39 @@
-import React, { useContext,useEffect} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { DetailsContext } from '../Context/DetailsContext';
 import { Grid, TextField, Typography, Button } from '@material-ui/core';
 
 const Experience = () => {
   const { experiences, setExperiences } = useContext(DetailsContext);
+
   useEffect(() => {
     if (experiences.length === 0) {
-      setExperiences([]); // Set projects to an empty array initially
+      setExperiences([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const handleAddExperience = () => {
-    setExperiences([...experiences, {
-      companyName: '',
-      designation: '',
-      startDate: '',
-      endDate: '',
-      workDetails: '',
-    }]);
+    setExperiences([
+      ...experiences,
+      {
+        companyName: '',
+        designation: '',
+        startDate: '',
+        endDate: '',
+        workDetails: '',
+      },
+    ]);
   };
 
   const handleInputChange = (index, field, value) => {
     const updatedExperiences = [...experiences];
     updatedExperiences[index][field] = value;
+    setExperiences(updatedExperiences);
+  };
+
+  const handleDeleteExperience = (index) => {
+    const updatedExperiences = [...experiences];
+    updatedExperiences.splice(index, 1);
     setExperiences(updatedExperiences);
   };
 
@@ -34,7 +45,6 @@ const Experience = () => {
 
       {experiences.map((experience, index) => (
         <Grid container spacing={2} key={index}>
-           
           <Grid item xs={12} sm={6}>
             <TextField
               label={`Company Name ${index + 1}`}
@@ -84,17 +94,26 @@ const Experience = () => {
               inputProps={{ maxLength: 1500 }}
             />
           </Grid>
+          <Grid item xs={12} style={{ textAlign: 'right' }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => handleDeleteExperience(index)}
+            >
+              Delete
+            </Button>
+          </Grid>
         </Grid>
       ))}
-<Grid item xs={12} style={{ textAlign: 'center', marginTop: '20px' }}>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleAddExperience}
-        disabled={experiences.length >= 5}
-      >
-        Add Experience
-      </Button>
+      <Grid item xs={12} style={{ textAlign: 'center', marginTop: '20px' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleAddExperience}
+          disabled={experiences.length >= 5}
+        >
+          Add Experience
+        </Button>
       </Grid>
     </Grid>
   );

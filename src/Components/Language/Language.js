@@ -1,16 +1,26 @@
 import React, { useContext, useEffect } from 'react';
 import { DetailsContext } from '../Context/DetailsContext';
-import { Grid, Typography, Button, Select, MenuItem, FormControl,TextField, InputLabel } from '@material-ui/core';
-
+import {
+  Grid,
+  Typography,
+  Button,
+  Select,
+  MenuItem,
+  FormControl,
+  TextField,
+  InputLabel,
+} from '@material-ui/core';
 
 const Language = () => {
   const { languages, setLanguages } = useContext(DetailsContext);
+
   useEffect(() => {
     if (languages.length === 0) {
-      setLanguages([]); // Set projects to an empty array initially
+      setLanguages([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const handleInputChange = (index, field, value) => {
     const updatedLanguages = [...languages];
     updatedLanguages[index][field] = value;
@@ -24,9 +34,17 @@ const Language = () => {
     }
   };
 
+  const handleDeleteLanguage = (index) => {
+    const updatedLanguages = [...languages];
+    updatedLanguages.splice(index, 1);
+    setLanguages(updatedLanguages);
+  };
+
   return (
     <Grid item xs={12} style={{ marginTop: '20px' }}>
-      <Typography variant="h6" gutterBottom>Languages</Typography>
+      <Typography variant="h6" gutterBottom>
+        Languages
+      </Typography>
       {languages.map((lang, index) => (
         <Grid container spacing={2} key={index}>
           <Grid item xs={12} sm={6}>
@@ -53,6 +71,15 @@ const Language = () => {
                 <MenuItem value="Expert">Expert</MenuItem>
               </Select>
             </FormControl>
+          </Grid>
+          <Grid item xs={12} style={{ textAlign: 'right' }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => handleDeleteLanguage(index)}
+            >
+              Delete
+            </Button>
           </Grid>
         </Grid>
       ))}
